@@ -1,0 +1,357 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Rubik", "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-action: var(--action);
+  --color-on-action: var(--on-action);
+  --color-coral: var(--coral);
+  --color-coral-strong: var(--coral-strong);
+  --color-coral-soft: var(--coral-soft);
+  --color-person-roee: var(--person-roee);
+  --color-person-roee-soft: var(--person-roee-soft);
+  --color-person-aviv: var(--person-aviv);
+  --color-person-aviv-soft: var(--person-aviv-soft);
+  --color-chart-shared: var(--chart-shared);
+  --color-chart-roee: var(--chart-roee);
+  --color-chart-aviv: var(--chart-aviv);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-focus: var(--focus);
+  --color-receipt-paper: var(--receipt-paper);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
+  --radius-full: 999px;
+}
+
+/* shadcn names point at the design tokens, so .dark only has to change the tokens. */
+:root,
+[data-theme="light"] {
+  --bg: #f5f8f6;
+  --surface: #ffffff;
+  --surface-2: #eef3f0;
+  --border: #e2eae6;
+  --border-strong: #a9b8b1;
+  --ink: #18241f;
+  --ink-muted: #56655f;
+  --brand: #3fb68b;
+  --brand-strong: #1d7556;
+  --brand-soft: #e4f4ec;
+  --action: #1d7556;
+  --on-action: #ffffff;
+  --coral: #e8735c;
+  --coral-strong: #b5412d;
+  --coral-soft: #fcebe6;
+  --person-roee: #2f6f9f;
+  --person-roee-soft: #e6f0f8;
+  --person-aviv: #93641a;
+  --person-aviv-soft: #f8efdf;
+  --chart-shared: var(--brand);
+  --chart-roee: #5b95c4;
+  --chart-aviv: #d8a54c;
+  --chart-4: #8f7fc4;
+  --chart-5: #5fb3b3;
+  --chart-6: #b7c2bd;
+  --focus: #1d7556;
+  --receipt-paper: #fffdf8;
+  --shadow-card: 0 1px 2px rgba(20, 48, 36, 0.04), 0 6px 20px rgba(20, 48, 36, 0.05);
+  --shadow-pop: 0 8px 32px rgba(20, 48, 36, 0.14);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --radius: 20px;
+  color-scheme: light;
+
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--action);
+  --primary-foreground: var(--on-action);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--brand-soft);
+  --accent-foreground: var(--brand-strong);
+  --destructive: var(--coral-strong);
+  --input: var(--border-strong);
+  --ring: var(--focus);
+}
+
+.dark,
+[data-theme="dark"] {
+  --bg: #0e1412;
+  --surface: #151d1a;
+  --surface-2: #1c2622;
+  --border: #26322d;
+  --border-strong: #4a5a53;
+  --ink: #e7eeea;
+  --ink-muted: #9cada6;
+  --brand: #4fc79a;
+  --brand-strong: #5fd1a4;
+  --brand-soft: #173328;
+  --action: #5fd1a4;
+  --on-action: #0a1a13;
+  --coral: #f0806b;
+  --coral-strong: #ff9a85;
+  --coral-soft: #3a221d;
+  --person-roee: #7fb6e0;
+  --person-roee-soft: #1a2a36;
+  --person-aviv: #e2b25c;
+  --person-aviv-soft: #33281a;
+  --chart-roee: #7fb6e0;
+  --chart-aviv: #e2b25c;
+  --chart-4: #a597d6;
+  --chart-5: #74c6c6;
+  --chart-6: #55635d;
+  --focus: #5fd1a4;
+  --receipt-paper: #1f2724;
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-pop: 0 8px 32px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+/* The design-system block was empty. Filled for OS dark when the toggle is not forced to light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1412;
+    --surface: #151d1a;
+    --surface-2: #1c2622;
+    --border: #26322d;
+    --border-strong: #4a5a53;
+    --ink: #e7eeea;
+    --ink-muted: #9cada6;
+    --brand: #4fc79a;
+    --brand-strong: #5fd1a4;
+    --brand-soft: #173328;
+    --action: #5fd1a4;
+    --on-action: #0a1a13;
+    --coral: #f0806b;
+    --coral-strong: #ff9a85;
+    --coral-soft: #3a221d;
+    --person-roee: #7fb6e0;
+    --person-roee-soft: #1a2a36;
+    --person-aviv: #e2b25c;
+    --person-aviv-soft: #33281a;
+    --chart-roee: #7fb6e0;
+    --chart-aviv: #e2b25c;
+    --chart-4: #a597d6;
+    --chart-5: #74c6c6;
+    --chart-6: #55635d;
+    --focus: #5fd1a4;
+    --receipt-paper: #1f2724;
+    --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.04);
+    --shadow-pop: 0 8px 32px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-pop {
+  box-shadow: var(--shadow-pop);
+}
+
+@utility type-num-hero {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+@utility type-num-lg {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+@utility type-num-md {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+@utility type-title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+@utility type-heading {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+@utility type-body {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+@utility type-body-strong {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+@utility type-caption {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+@utility type-micro {
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+}
+
+@utility type-receipt {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  body {
+    min-height: 100svh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  button,
+  a {
+    transition-property: background-color, color, transform, opacity;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .card {
+    padding: var(--space-6);
+  }
+}
+
+.amount {
+  font-variant-numeric: tabular-nums;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+.skeleton {
+  background-color: var(--surface-2);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--surface) 85%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: hf-shimmer 1.4s linear infinite;
+}
+
+.skeleton-static {
+  animation: none;
+  background-image: none;
+}
+
+@keyframes hf-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
