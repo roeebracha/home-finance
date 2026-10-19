@@ -1,0 +1,10 @@
+@hostname = http://localhost:3000
+
+GET {{hostname}}/welcome
+
+###
+GET {{hostname}}/api/health
+
+###
+GET {{hostname}}/api/auth/me
+Authorization: Bearer {{token}}
