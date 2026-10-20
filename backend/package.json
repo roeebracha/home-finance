@@ -10,8 +10,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "lint": "eslint .",
-    "test": "node --test --test-concurrency=1",
-    "build": "node scripts/check.js"
+    "test": "node --test --test-concurrency=1"
   },
   "engines": {
     "node": ">=22"

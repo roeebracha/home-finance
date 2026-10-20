@@ -14,10 +14,6 @@ const origins = (process.env.CLIENT_ORIGIN || "http://localhost:5173")
 app.use(cors({ origin: origins }));
 app.use(express.json());
 
-app.get("/welcome", (_req, res) => {
-  res.json({ message: "הבית שלנו" });
-});
-
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
 });

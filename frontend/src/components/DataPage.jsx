@@ -1,7 +1,7 @@
 import EmptyState from "@/components/EmptyState";
 import Freshness from "@/components/Freshness";
 import { Badge } from "@/components/ui/badge";
-import { HeroSkeleton, ListSkeleton } from "@/components/skeletons";
+import { ListSkeleton } from "@/components/skeletons";
 
 export default function DataPage({
   title,
@@ -9,7 +9,6 @@ export default function DataPage({
   emptyDescription,
   icon,
   soon = false,
-  skeleton = "list",
 }) {
   return (
     <section className="col-span-1 flex flex-col gap-4 lg:col-span-12">
@@ -23,7 +22,7 @@ export default function DataPage({
       <article className="card">
         <EmptyState icon={icon} title={emptyTitle} description={emptyDescription} />
         <div className="mt-2 border-t border-border pt-5">
-          {skeleton === "hero" ? <HeroSkeleton /> : <ListSkeleton />}
+          <ListSkeleton />
         </div>
       </article>
     </section>

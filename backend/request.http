@@ -1,7 +1,5 @@
 @hostname = http://localhost:3000
 
-GET {{hostname}}/welcome
-
 ###
 GET {{hostname}}/api/health
 

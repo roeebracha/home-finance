@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -156,7 +155,7 @@
   color-scheme: dark;
 }
 
-/* The design-system block was empty. Filled for OS dark when the toggle is not forced to light. */
+/* Filled for OS dark when the toggle is not forced to light. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0e1412;
@@ -313,10 +312,6 @@
   font-variant-numeric: tabular-nums;
   unicode-bidi: isolate;
   direction: ltr;
-}
-
-[dir="rtl"] .rtl-flip {
-  transform: scaleX(-1);
 }
 
 .skeleton {
