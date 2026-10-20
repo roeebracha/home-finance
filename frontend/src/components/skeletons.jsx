@@ -29,6 +29,9 @@ export function ListSkeleton({ rows = 3 }) {
 export function PageLoading() {
   return (
     <div className="mx-auto flex min-h-svh w-full max-w-[1120px] flex-col gap-4 bg-background px-4 py-6">
+      <span className="sr-only" role="status">
+        טוען
+      </span>
       <Skeleton className="h-8 w-40" />
       <Skeleton className="h-4 w-56" />
       <Skeleton className="h-48 w-full rounded-lg" />

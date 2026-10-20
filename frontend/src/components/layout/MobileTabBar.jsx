@@ -39,32 +39,6 @@ export default function MobileTabBar() {
       ref={rootRef}
       className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface pb-[env(safe-area-inset-bottom)] lg:hidden"
     >
-      {open ? (
-        <div
-          id={menuId}
-          role="menu"
-          className="absolute inset-x-4 bottom-full mb-2 rounded-lg bg-surface p-2 shadow-pop"
-        >
-          {moreItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              role="menuitem"
-              className={({ isActive }) =>
-                cn(
-                  "flex items-center gap-3 rounded-md px-3 py-3 type-body",
-                  isActive ? "bg-brand-soft text-brand-strong" : "text-ink",
-                )
-              }
-            >
-              <Icon name={item.icon} size={20} />
-              <span className="flex-1">{item.label}</span>
-              {item.soon ? <Badge tone="soon">בקרוב</Badge> : null}
-            </NavLink>
-          ))}
-        </div>
-      ) : null}
-
       <nav className="flex h-16 items-stretch" aria-label="ניווט">
         {tabs.map((item) => (
           <NavLink
@@ -100,7 +74,7 @@ export default function MobileTabBar() {
             moreActive || open ? "text-brand-strong" : "text-ink-muted",
           )}
           aria-expanded={open}
-          aria-controls={menuId}
+          aria-controls={open ? menuId : undefined}
           onClick={() => setOpenPath((current) => (current === pathname ? null : pathname))}
         >
           <span
@@ -113,6 +87,29 @@ export default function MobileTabBar() {
           </span>
           עוד
         </button>
+        {open ? (
+          <div
+            id={menuId}
+            className="absolute inset-x-4 bottom-full mb-2 rounded-lg bg-surface p-2 shadow-pop"
+          >
+            {moreItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  cn(
+                    "flex items-center gap-3 rounded-md px-3 py-3 type-body",
+                    isActive ? "bg-brand-soft text-brand-strong" : "text-ink",
+                  )
+                }
+              >
+                <Icon name={item.icon} size={20} />
+                <span className="flex-1">{item.label}</span>
+                {item.soon ? <Badge tone="soon">בקרוב</Badge> : null}
+              </NavLink>
+            ))}
+          </div>
+        ) : null}
       </nav>
     </div>
   );

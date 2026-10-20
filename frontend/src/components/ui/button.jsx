@@ -8,8 +8,8 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-action text-on-action",
         secondary: "bg-surface text-ink shadow-[inset_0_0_0_1px_var(--border-strong)]",
-        ghost: "bg-transparent text-brand-strong",
-        destructive: "bg-coral-soft text-coral-strong",
+        ghost: "bg-transparent text-brand-strong hover:bg-brand-soft",
+        destructive: "bg-coral-soft text-coral-strong hover:bg-surface-2",
       },
       size: {
         default: "min-h-11",
