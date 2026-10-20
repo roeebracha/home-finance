@@ -7,13 +7,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-action text-on-action",
-        secondary: "bg-surface text-ink shadow-[inset_0_0_0_1px_var(--border-strong)]",
         ghost: "bg-transparent text-brand-strong",
         destructive: "bg-coral-soft text-coral-strong",
       },
       size: {
         default: "min-h-11",
-        sm: "min-h-11 px-3",
       },
     },
     defaultVariants: {

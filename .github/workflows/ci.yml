@@ -20,4 +20,3 @@ jobs:
       - run: npm run build -w frontend
       - run: npm run lint -w backend
       - run: npm run test -w backend
-      - run: npm run build -w backend

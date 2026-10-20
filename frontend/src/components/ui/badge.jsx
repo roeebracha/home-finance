@@ -5,7 +5,6 @@ const badgeVariants = cva("inline-flex items-center rounded-full px-2 py-0.5 typ
   variants: {
     tone: {
       shared: "bg-brand-soft text-brand-strong",
-      private: "bg-surface-2 text-ink-muted",
       roee: "bg-person-roee-soft text-person-roee",
       aviv: "bg-person-aviv-soft text-person-aviv",
       soon: "bg-surface-2 text-ink-muted",

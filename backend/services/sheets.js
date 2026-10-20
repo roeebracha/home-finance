@@ -1,19 +1,6 @@
 const { z } = require("zod");
 
-/**
- * TODO(PR #2): Google Sheet is the source of truth. There is no database.
- *
- * - Read with a service account that stays on the server.
- * - Read Angela's tabs. Write only to the tabs 'הגדרות' and 'פעולות'.
- * - On every read, apply rows in 'פעולות' whose status is 'ממתינה',
- *   matched by stable ids (mv- / hm- / rc- / sp-). Angela merges those
- *   rows and marks them 'מוזגה'.
- * - Cache the merged snapshot for 30–60 seconds. The client refreshes
- *   on that cadence.
- * - Validate with zod and fail with a clear error. Never turn a bad
- *   cell into a number.
- * - Money leaves this module as integer agorot.
- */
+// TODO: see docs/adr.md
 
 const rowIdSchema = z.string().regex(/^(mv|hm|rc|sp)-[A-Za-z0-9_-]+$/);
 const agorotSchema = z.number().int().refine((value) => Number.isSafeInteger(value));

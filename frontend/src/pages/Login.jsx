@@ -25,7 +25,7 @@ export default function LoginPage() {
 
         {!clientId ? (
           <p className="mt-6 rounded-md bg-coral-soft px-3 py-3 type-body text-coral-strong" role="alert">
-            חסר VITE_GOOGLE_CLIENT_ID בקובץ frontend/.env
+            חסר VITE_GOOGLE_CLIENT_ID
           </p>
         ) : null}
 

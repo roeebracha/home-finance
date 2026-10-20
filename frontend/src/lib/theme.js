@@ -1,4 +1,4 @@
-export const THEME_KEY = "hf-theme";
+const THEME_KEY = "hf-theme";
 
 export function getStoredTheme() {
   try {
