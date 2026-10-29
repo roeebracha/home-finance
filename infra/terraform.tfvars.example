@@ -1,0 +1,15 @@
+# Copy to terraform.tfvars and fill in. terraform.tfvars is gitignored.
+
+project_id      = "home-finance-change-me"
+project_name    = "home-finance"
+billing_account = "000000-000000-000000"
+
+# The long id in https://docs.google.com/spreadsheets/d/<id>/edit
+google_sheet_id = "replace-with-spreadsheet-id"
+
+# false creates the Vercel project. true looks up one that already exists.
+vercel_project_exists = false
+vercel_project_name   = "home-finance"
+
+# Personal account: leave this unset. A team slug or id goes here only if you use one.
+# vercel_team_id = "team_xxxxxxxx"
