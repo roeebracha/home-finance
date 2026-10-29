@@ -1,7 +1,15 @@
 const { verifyToken } = require("../services/tokenService");
-const { isAllowedEmail } = require("../services/allowlist");
+const { isAllowedEmail, assertAllowlistConfigured } = require("../services/allowlist");
+const { misconfigured, isMisconfigured } = require("../services/authConfig");
 
 exports.guard = (req, res, next) => {
+  try {
+    assertAllowlistConfigured();
+  } catch (error) {
+    if (isMisconfigured(error)) return misconfigured(res);
+    throw error;
+  }
+
   const header = req.headers.authorization || "";
   const token = header.startsWith("Bearer ") ? header.slice("Bearer ".length).trim() : "";
 
@@ -27,12 +35,7 @@ exports.guard = (req, res, next) => {
     };
     return next();
   } catch (error) {
-    if (error.code === "MISSING_SECRET") {
-      return res.status(500).json({
-        error: "server_misconfigured",
-        message: "השרת לא מוגדר",
-      });
-    }
+    if (isMisconfigured(error)) return misconfigured(res);
     return res.status(401).json({ error: "invalid_token", message: "הטוקן לא תקין" });
   }
 };

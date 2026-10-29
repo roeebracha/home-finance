@@ -8,11 +8,13 @@ function formatUpdatedAt(date) {
 }
 
 export default function Freshness({ updatedAt = null }) {
-  const label = formatUpdatedAt(updatedAt);
+  const date = typeof updatedAt === "string" ? new Date(updatedAt) : updatedAt;
+  const valid = date instanceof Date && !Number.isNaN(date.getTime());
+  const label = formatUpdatedAt(valid ? date : null);
   return (
     <p className="type-caption text-ink-muted">
       עודכן לאחרונה:{" "}
-      <time className="amount" dateTime={updatedAt ? updatedAt.toISOString() : undefined}>
+      <time className="amount" dateTime={valid ? date.toISOString() : undefined}>
         {label}
       </time>
     </p>
