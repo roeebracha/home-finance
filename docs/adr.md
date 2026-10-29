@@ -1,6 +1,6 @@
 # החלטות ארכיטקטורה
 
-המסמך הזה רושם למה הבית שלנו בנוי ככה. הקוד של PR הזה מממש את המסגרת. החיבור לגיליון מגיע ב-PR הבא, לפי ההחלטות שכבר נעולות כאן.
+המסמך הזה רושם למה הבית שלנו בנוי ככה. המסגרת והחיבור לגיליון יושבים על ההחלטות כאן: השרת קורא עם חשבון שירות, מאמת ב-zod, שומר אגורות, ומניח פעולות `ממתינה` מעל התמונה.
 
 ## ADR 1 — Vite, React ו-Express כמו ב-fitness-tracker
 
@@ -8,7 +8,7 @@
 
 רועי לומד מהפרויקט [fitness-tracker](https://github.com/roeebracha/fitness-tracker). אותו מבנה חוזר כאן כדי שהמעבר בין שני הריפוזיטוריז יהיה קריאה, לא ניחוש: `frontend/` עם Vite ו-React ב-JavaScript בלי TypeScript, `components.json` ו-`src/components/ui`, תיקיות `pages/`, `components/layout/` (`AppLayout`, `Sidebar`, `Topbar`, `navItems.js`), `auth/AuthContext.jsx` עם `tokenStorage.js`, `api/client.js`, `hooks/`, `lib/utils.js`, ו-alias של `@` ב-`jsconfig`. בצד השרת: Express, `app.js`, `routes/`, `controllers/`, `services/googleAuth.js` ו-`services/tokenService.js`, ו-`middleware/guard.js`.
 
-אין כאן `models/` ואין מסד. במקומם יש `services/sheets.js` — עדיין stub, עם TODO ל-PR הבא.
+אין כאן `models/` ואין מסד. במקומם יש `services/sheets.js`: קריאה ל-Sheets API, ואז `sheetParse.js`, `overlay.js` ו-`grouping.js`.
 
 ## ADR 2 — גיליון Google הוא מקור האמת, בלי מסד
 
@@ -20,7 +20,7 @@
 
 סטטוס: מקובל
 
-הקריאה והכתיבה לגיליון רצות עם service account. המפתח שלו יושב במשתני סביבה של השרת (`GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`, `GOOGLE_SHEET_ID` ב-`.env.example`). הדפדפן מקבל רק את ה-JWT שלנו אחרי התחברות Google. הוא לא רואה את מפתח חשבון השירות.
+הקריאה לגיליון רצה עם service account. המפתח יושב בשרת כ-`GOOGLE_SERVICE_ACCOUNT_JSON` (אובייקט ה-JSON כולו) יחד עם `GOOGLE_SHEET_ID`. הדפדפן מקבל רק את ה-JWT שלנו אחרי התחברות Google. הוא לא רואה את מפתח חשבון השירות. היקף ה-API בקוד הוא קריאה בלבד; כתיבה, אם תתווסף, מוגבלת לטאבים `הגדרות` ו-`פעולות`.
 
 ## ADR 4 — מה קוראים ומה כותבים
 
@@ -55,7 +55,7 @@
 
 תא ריק, טקסט, או פסיק במקום מספר לא יהפכו בשקט לאפס. zod בודק את מה שעולה מהגיליון. אם משהו לא תואם, השרת זורק שגיאה בעברית והמסך נשאר בלי הסכום. עדיף כרטיס שגיאה על מאזן שנראה סביר והוא לא.
 
-ה-stub כבר מתנהג ככה: `readHousehold` נכשל עם `SHEETS_NOT_CONFIGURED` במקום להחזיר אפסים, ו-`assertAgorot` דוחה כל דבר שאינו מספר שלם.
+`readHousehold` נכשל עם `SHEETS_NOT_CONFIGURED` כשאין הגדרה, במקום להחזיר אפסים. תא סכום ריק או טקסט נכשל בעברית. `assertAgorot` דוחה כל דבר שאינו מספר שלם. תאריך ריק נשמר כ-`null`.
 
 ## ADR 8 — כסף הוא אגורות שלמות
 

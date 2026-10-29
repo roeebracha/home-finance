@@ -1,6 +1,7 @@
 const googleAuth = require("../services/googleAuth");
 const { signToken } = require("../services/tokenService");
 const { isAllowedEmail } = require("../services/allowlist");
+const { assertAuthConfigured, misconfigured, isMisconfigured } = require("../services/authConfig");
 
 function publicUser(profile) {
   return {
@@ -21,10 +22,18 @@ exports.googleLogin = async (req, res) => {
     });
   }
 
+  try {
+    assertAuthConfigured();
+  } catch (error) {
+    if (isMisconfigured(error)) return misconfigured(res);
+    throw error;
+  }
+
   let profile;
   try {
     profile = await googleAuth.verifyGoogleCredential(credential);
-  } catch {
+  } catch (error) {
+    if (isMisconfigured(error)) return misconfigured(res);
     return res.status(401).json({
       error: "invalid_credential",
       message: "אימות Google נכשל",
@@ -38,8 +47,13 @@ exports.googleLogin = async (req, res) => {
     });
   }
 
-  const token = signToken(profile);
-  return res.json({ token, user: publicUser(profile) });
+  try {
+    const token = signToken(profile);
+    return res.json({ token, user: publicUser(profile) });
+  } catch (error) {
+    if (isMisconfigured(error)) return misconfigured(res);
+    throw error;
+  }
 };
 
 exports.me = (req, res) => {

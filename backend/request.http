@@ -6,3 +6,7 @@ GET {{hostname}}/api/health
 ###
 GET {{hostname}}/api/auth/me
 Authorization: Bearer {{token}}
+
+###
+GET {{hostname}}/api/household
+Authorization: Bearer {{token}}
