@@ -48,7 +48,7 @@ export default function Sidebar() {
   return (
     <aside className="sticky top-0 hidden h-svh w-[248px] shrink-0 flex-col border-e border-border bg-surface lg:flex">
       <div className="flex items-center gap-2 px-5 pt-6">
-        <span className="grid size-9 place-items-center rounded-md bg-brand-soft text-brand">
+        <span className="grid size-9 place-items-center rounded-md bg-brand-soft text-brand-strong">
           <Home size={20} strokeWidth={1.75} aria-hidden="true" />
         </span>
         <span className="type-heading">הבית שלנו</span>
