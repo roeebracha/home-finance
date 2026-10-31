@@ -35,7 +35,7 @@
    cp terraform.tfvars.example terraform.tfvars
    ```
 
-   `project_id` חייב להיות פנוי בכל Google Cloud. `google_sheet_id` הוא החלק שבכתובת הגיליון בין `/d/` ל-`/edit`. אם הפרויקט `home-finance` כבר קיים ב-Vercel, שמים `vercel_project_exists = true` ואז טרהפורם רק קורא אותו.
+   `project_id` חייב להיות פנוי בכל Google Cloud. `google_sheet_id` הוא החלק שבכתובת הגיליון בין `/d/` ל-`/edit`. פרויקט Vercel `home-finance` כבר קיים, וטרהפורם רק קורא אותו. אם `terraform.tfvars` המקומי עדיין מגדיר `vercel_project_exists`, מוחקים את השורה הזאת. ה-apply הראשון מוציא את `vercel_project.home_finance` מה-state בלי למחוק את הפרויקט.
 
 ## הרצה
 
@@ -47,7 +47,7 @@ terraform plan
 terraform apply
 ```
 
-`plan` מראה פרויקט, שני APIs, חשבון שירות, מפתח, פרויקט Vercel (או קריאה של פרויקט קיים), ושני משתני סביבה. `apply` מבצע את זה.
+`plan` מראה פרויקט, שני APIs, חשבון שירות, מפתח, קריאה של פרויקט Vercel הקיים, ושני משתני סביבה. `apply` מבצע את זה.
 
 בסוף:
 

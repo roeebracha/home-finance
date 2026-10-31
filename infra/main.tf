@@ -38,23 +38,22 @@ resource "google_service_account_key" "sheets" {
   service_account_id = google_service_account.sheets.name
 }
 
-resource "vercel_project" "home_finance" {
-  count = var.vercel_project_exists ? 0 : 1
-  name  = var.vercel_project_name
+# Keep until the next apply. destroy = false drops the old project resource
+# from state without deleting the live project.
+removed {
+  from = vercel_project.home_finance
+
+  lifecycle {
+    destroy = false
+  }
 }
 
 data "vercel_project" "home_finance" {
-  count = var.vercel_project_exists ? 1 : 0
-  name  = var.vercel_project_name
+  name = var.vercel_project_name
 }
 
 locals {
-  vercel_project_id = (
-    var.vercel_project_exists
-    ? data.vercel_project.home_finance[0].id
-    : vercel_project.home_finance[0].id
-  )
-
+  vercel_project_id        = data.vercel_project.home_finance.id
   service_account_key_json = base64decode(google_service_account_key.sheets.private_key)
 }
 

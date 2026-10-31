@@ -35,15 +35,9 @@ variable "google_sheet_id" {
 }
 
 variable "vercel_project_name" {
-  description = "Vercel project name. Created, or read, depending on vercel_project_exists."
+  description = "Name of the existing Vercel project. Terraform reads it and does not create it."
   type        = string
   default     = "home-finance"
-}
-
-variable "vercel_project_exists" {
-  description = "When true, read the Vercel project with a data source instead of creating it."
-  type        = bool
-  default     = false
 }
 
 variable "vercel_team_id" {
