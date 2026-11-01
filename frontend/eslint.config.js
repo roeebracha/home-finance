@@ -19,11 +19,11 @@ export default defineConfig([
     },
   },
   {
-    files: ["src/auth/**/*.{js,jsx}", "src/hooks/**/*.{js,jsx}"],
+    files: ["src/auth/**/*.{js,jsx}", "src/hooks/**/*.{js,jsx}", "src/data/**/*.{js,jsx}"],
     rules: {
       "react-refresh/only-export-components": [
         "error",
-        { allowExportNames: ["useAuth", "useTheme"] },
+        { allowExportNames: ["useAuth", "useTheme", "useHousehold"] },
       ],
     },
   },
