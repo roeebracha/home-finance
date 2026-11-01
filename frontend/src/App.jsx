@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { HouseholdProvider } from "@/data/HouseholdContext";
 import AppLayout from "@/components/layout/AppLayout";
 import Apartment from "@/pages/Apartment";
 import Expenses from "@/pages/Expenses";
@@ -17,7 +18,9 @@ export default function App() {
         <Route
           element={
             <ProtectedRoute>
-              <AppLayout />
+              <HouseholdProvider>
+                <AppLayout />
+              </HouseholdProvider>
             </ProtectedRoute>
           }
         >
