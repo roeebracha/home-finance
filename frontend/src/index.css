@@ -205,6 +205,7 @@
   font-variant-numeric: tabular-nums;
   unicode-bidi: isolate;
   direction: ltr;
+  text-align: end;
 }
 
 @utility type-num-lg {
@@ -214,6 +215,7 @@
   font-variant-numeric: tabular-nums;
   unicode-bidi: isolate;
   direction: ltr;
+  text-align: end;
 }
 
 @utility type-num-md {
@@ -223,6 +225,7 @@
   font-variant-numeric: tabular-nums;
   unicode-bidi: isolate;
   direction: ltr;
+  text-align: end;
 }
 
 @utility type-title {

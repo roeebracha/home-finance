@@ -16,6 +16,10 @@ cp frontend/.env.example frontend/.env
 
 ממלאים ב-`backend/.env` את `GOOGLE_CLIENT_ID`, `JWT_SECRET` ו-`ALLOWED_EMAILS` (שתי הכתובות, מופרדות בפסיק). אותו client id נכנס ל-`frontend/.env` כ-`VITE_GOOGLE_CLIENT_ID`.
 
+בלי `JWT_SECRET`, או כש-`ALLOWED_EMAILS` ריק, השרת נכשל סגור: אין טוקן, וכל נתיב שמור מחזיר שהשרת לא מוגדר. כתובת שלא ברשימה נדחית גם אחרי שהטוקן כבר הונפק.
+
+לחיבור לגיליון מוסיפים `GOOGLE_SHEET_ID` ו-`GOOGLE_SERVICE_ACCOUNT_JSON` (ה-JSON של חשבון השירות, בשורה אחת). בלי שניהם `/api/household` לא ממציא מספרים. הקובץ לא נכנס לגיט.
+
 שני תהליכים:
 
 ```bash
@@ -35,7 +39,7 @@ npm run lint
 npm run build
 ```
 
-`frontend/src/lib/money.js` בודק הצגת אגורות. השרת בודק את רשימת הכתובות, את ה-JWT, ואת ה-stub של הגיליון.
+`frontend/src/lib/money.js` בודק הצגת אגורות. השרת בודק את רשימת הכתובות, את ה-JWT, את קריאת הטאבים עם zod (תנועות, הגדרות, `balance_final`, פעולות), את שכבת הפעולות הממתינות, ואת קיבוץ הקבלות לפי קידומת מזהה. סכום נשמר כאגורות שלמות. שורה עם סטטוס `מוזגה` לא מיושמת שוב.
 
 ## פריסה
 

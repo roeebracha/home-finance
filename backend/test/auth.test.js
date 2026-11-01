@@ -126,6 +126,32 @@ describe("auth routes", () => {
     assert.equal(response.body.error, "email_not_allowed");
   });
 
+  it("fails closed when ALLOWED_EMAILS is missing and does not issue a token", async () => {
+    const previous = process.env.ALLOWED_EMAILS;
+    delete process.env.ALLOWED_EMAILS;
+    try {
+      const response = await request(app).post("/api/auth/google").send({ credential: "allowed" });
+      assert.equal(response.status, 500);
+      assert.equal(response.body.error, "server_misconfigured");
+      assert.equal(response.body.token, undefined);
+    } finally {
+      process.env.ALLOWED_EMAILS = previous;
+    }
+  });
+
+  it("fails closed when JWT_SECRET is missing and does not issue a token", async () => {
+    const previous = process.env.JWT_SECRET;
+    delete process.env.JWT_SECRET;
+    try {
+      const response = await request(app).post("/api/auth/google").send({ credential: "allowed" });
+      assert.equal(response.status, 500);
+      assert.equal(response.body.error, "server_misconfigured");
+      assert.equal(response.body.token, undefined);
+    } finally {
+      process.env.JWT_SECRET = previous;
+    }
+  });
+
   it("issues our JWT for an allowlisted Google account", async () => {
     const response = await request(app)
       .post("/api/auth/google")
