@@ -1,8 +1,13 @@
 const { OAuth2Client } = require("google-auth-library");
 
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
 async function verifyGoogleCredential(credential) {
+  if (!process.env.GOOGLE_CLIENT_ID || !String(process.env.GOOGLE_CLIENT_ID).trim()) {
+    const error = new Error("GOOGLE_CLIENT_ID is not set");
+    error.code = "MISSING_GOOGLE_CLIENT";
+    throw error;
+  }
+
+  const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
   const ticket = await client.verifyIdToken({
     idToken: credential,
     audience: process.env.GOOGLE_CLIENT_ID,

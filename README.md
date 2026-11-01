@@ -16,6 +16,8 @@ cp frontend/.env.example frontend/.env
 
 ממלאים ב-`backend/.env` את `GOOGLE_CLIENT_ID`, `JWT_SECRET` ו-`ALLOWED_EMAILS` (שתי הכתובות, מופרדות בפסיק). אותו client id נכנס ל-`frontend/.env` כ-`VITE_GOOGLE_CLIENT_ID`.
 
+בלי `JWT_SECRET`, או כש-`ALLOWED_EMAILS` ריק, השרת נכשל סגור: אין טוקן, וכל נתיב שמור מחזיר שהשרת לא מוגדר. כתובת שלא ברשימה נדחית גם אחרי שהטוקן כבר הונפק.
+
 שני תהליכים:
 
 ```bash
