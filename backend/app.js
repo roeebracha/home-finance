@@ -24,6 +24,22 @@ app.use("/api", (_req, res) => {
   res.status(404).json({ error: "not_found", message: "הנתיב לא נמצא" });
 });
 
+app.use((error, _req, res, _next) => {
+  if (
+    error.code === "MISSING_SECRET" ||
+    error.code === "MISSING_ALLOWLIST" ||
+    error.code === "MISSING_GOOGLE_CLIENT"
+  ) {
+    return res.status(500).json({
+      error: "server_misconfigured",
+      message: "השרת לא מוגדר",
+    });
+  }
+  const detail = String((error && error.message) || "");
+  if (!/private_key|BEGIN PRIVATE/i.test(detail)) console.error(detail || "server_error");
+  return res.status(500).json({ error: "server_error", message: "שגיאה בשרת" });
+});
+
 // Local `node app.js` listens. Importing the app (tests, Vercel) must not.
 if (require.main === module) {
   const port = process.env.PORT || 3000;
