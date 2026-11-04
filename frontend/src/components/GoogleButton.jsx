@@ -18,7 +18,7 @@ export default function GoogleButton({ onError }) {
       theme={resolved === "dark" ? "filled_black" : "outline"}
       shape="pill"
       size="large"
-      width={280}
+      width={248}
       text="signin_with"
       locale="he"
     />
