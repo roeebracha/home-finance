@@ -1,17 +1,17 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import Icon from "./Icon";
-import { navItems } from "./navItems";
-
-const tabs = navItems.filter((item) => item.mobile === true);
-const moreItems = navItems.filter((item) => item.mobile === "more");
 
 export default function MobileTabBar() {
   const { pathname } = useLocation();
   const isMobile = useIsMobile();
+  const navItems = useActiveSection()?.navItems ?? [];
+  const tabs = navItems.filter((item) => item.mobile === true);
+  const moreItems = navItems.filter((item) => item.mobile === "more");
   const [openPath, setOpenPath] = useState(null);
   const rootRef = useRef(null);
   const menuId = useId();
@@ -33,6 +33,8 @@ export default function MobileTabBar() {
       document.removeEventListener("pointerdown", onPointer);
     };
   }, [open]);
+
+  if (tabs.length === 0 && moreItems.length === 0) return null;
 
   return (
     <div

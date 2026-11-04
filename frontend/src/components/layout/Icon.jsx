@@ -1,4 +1,4 @@
-import { Building2, Ellipsis, Home, Receipt, Settings, ShoppingCart, Sprout } from "lucide-react";
+import { Building2, Ellipsis, Home, Receipt, Settings, ShoppingCart, Sprout, Wallet } from "lucide-react";
 
 const ICONS = {
   home: Home,
@@ -7,6 +7,7 @@ const ICONS = {
   apartment: Building2,
   settings: Settings,
   garden: Sprout,
+  finance: Wallet,
   more: Ellipsis,
 };
 

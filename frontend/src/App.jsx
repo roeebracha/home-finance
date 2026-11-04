@@ -1,13 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AppLayout from "@/components/layout/AppLayout";
-import Apartment from "@/pages/Apartment";
-import Expenses from "@/pages/Expenses";
-import Garden from "@/pages/Garden";
-import Groceries from "@/pages/Groceries";
-import Home from "@/pages/Home";
 import Login from "@/pages/Login";
-import Settings from "@/pages/Settings";
+import { sections } from "@/sections";
 
 export default function App() {
   return (
@@ -21,12 +16,11 @@ export default function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="/" element={<Home />} />
-          <Route path="/expenses" element={<Expenses />} />
-          <Route path="/groceries" element={<Groceries />} />
-          <Route path="/apartment" element={<Apartment />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/garden" element={<Garden />} />
+          {sections.flatMap((section) =>
+            section.routes.map((route) => (
+              <Route key={route.path} path={route.path} element={route.element} />
+            )),
+          )}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
